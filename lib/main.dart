@@ -51,13 +51,14 @@ class _HomePageState extends State<HomePage> {
 
             children: <Widget>[
               _image == null ? Container():Image.file(_image),
-              SizedBox(height: 16,),
+
               _output == null ? Text(""): Text(
                 "${_output[0]["label"]}",
                 style: TextStyle(
                   fontFamily: 'Comfortaa',
                   fontSize: 20.0,
-                  color: Colors.blue),
+                  color: Colors.blue
+                ),
               )
             ],
             
