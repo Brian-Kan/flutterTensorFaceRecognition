@@ -1,4 +1,3 @@
-// import 'dart:html';
 
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -7,7 +6,9 @@ import 'package:flutter/material.dart';
 
 void main(){
   runApp(MaterialApp(
-    theme: ThemeData.dark(),
+    theme: ThemeData(
+      primarySwatch: Colors.blue
+    ),
     home: HomePage(),
   ));
 }
@@ -37,22 +38,30 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ml with Flutter")
+        title: Text("Facial Recognition with Flutter")
       ),
       body: _isLoading ? Container(
         alignment: Alignment.center,
         child: CircularProgressIndicator(),
       ) : Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _image == null ? Container():Image.file(_image),
-            SizedBox(height: 16,),
-            _output == null ? Text(""): Text(
-              "${_output[0]["label"]}"
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+
+            children: <Widget>[
+              _image == null ? Container():Image.file(_image),
+              SizedBox(height: 16,),
+              _output == null ? Text(""): Text(
+                "${_output[0]["label"]}",
+                style: TextStyle(
+                  fontFamily: 'Comfortaa',
+                  fontSize: 20.0,
+                  color: Colors.blue),
+              )
+            ],
+            
+          )
         )
       ),
       floatingActionButton: FloatingActionButton(
@@ -66,7 +75,7 @@ class _HomePageState extends State<HomePage> {
     );
   }  
 
-  // This function chooses and image.
+  // This function chooses an image.
   chooseImage() async{
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     if(image == null) return null;
@@ -100,3 +109,6 @@ class _HomePageState extends State<HomePage> {
   }
 
 }
+
+
+

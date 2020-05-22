@@ -1,2 +1,2 @@
-0 regular
-1 vitiligo
+Normal
+Vitiligo
